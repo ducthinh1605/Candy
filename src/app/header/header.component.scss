@@ -1,0 +1,28 @@
+
+.section-header .navbar {
+    background-color: #CD5C5C !important; /* Màu nền của thanh navbar */
+    color: #fff !important; /* Màu chữ trong thanh navbar */
+  }
+  /* Màu chữ khi hover */
+.section-header .navbar .nav-link:hover {
+    color: #FFFF00; /* Màu chữ khi hover là #FFFF00 */
+  }
+  /* Chỉnh màu nền của phần có class là "bg-primary" thành #808080 */
+.bg-primary {
+    background-color: #CD5C5C !important; /* Màu nền của thanh navbar */
+    color: #fff !important; /* Màu chữ trong thanh navbar */
+  }
+  /* Chỉnh màu nút tìm kiếm */
+.header-main .input-group button.btn-primary {
+    background-color: #CD5C5C; /* Màu nền của nút */
+    border-color: #CD5C5C; /* Màu viền của nút */
+    color: #fff; /* Màu chữ của nút */
+  }
+  
+  /* Chỉnh màu khi hover */
+  .header-main .input-group button.btn-primary:hover {
+    background-color: #8B0000; /* Màu nền khi hover */
+    border-color: #8B0000; /* Màu viền khi hover */
+  }
+  
+  

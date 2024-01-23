@@ -1,0 +1,44 @@
+
+  <hr>
+  
+  <div class="mat-elevation-z8" id="father">
+    <table class="table">
+      <thead class="head">
+        <tr>
+          <th>No.</th>
+          <th>ID người dùng</th>
+          <th>Tên người dùng</th>
+          <th>Nội dung</th>
+          <th>Email</th>
+          <th>Trạng thái</th>
+          <th>Created at</th>
+        </tr>
+      </thead>
+        <tbody>
+          <tr *ngFor="let item of dataContact | paginate: { itemsPerPage: 6, currentPage: currentPage }; let i = index">
+            <td scope="row">{{ (currentPage - 1) * 5 + i + 1  }}</td>
+            
+            <td>{{item?.user?.id}}</td>
+            <td>{{item?.user?.name}}</td>
+            <td>{{item?.content}}</td>
+            <td>{{item?.user?.email}}</td>
+            <td>
+              <mat-slide-toggle (change)="edit(item, $event.checked ? 1 : 0)">
+                Đã xem
+              </mat-slide-toggle>
+            </td>
+            <td>{{ formatDate(item.created_at) }}</td>
+            <td>
+              
+              <button class="btn btn-danger mr-1" (click)="deleteSup(item.id)">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+    </table>
+    <div class="pagination">
+      <pagination-controls (pageChange)="currentPage = $event"></pagination-controls>
+      <span style="margin-left: 6px; margin-top: 4px;"> {{ dataContact?.length }} Items </span>
+    </div>
+  </div>
+  
+  

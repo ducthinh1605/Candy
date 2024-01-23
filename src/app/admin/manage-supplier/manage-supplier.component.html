@@ -1,0 +1,45 @@
+<form action="" class="form-inline" method="post" role="form">
+    <button type="submit" (click)="addSup()" class="btn btn-primary">Add new</button>
+  </form>
+  
+  <hr>
+  
+  <div class="mat-elevation-z8" id="father">
+    <table class="table">
+      <thead class="head">
+        <tr>
+          <th>No.</th>
+          <th>Name</th>
+          <th>Img</th>
+          <th>Website</th>
+          <th>Description</th>
+          <th>Created at</th>
+          <th>Updated at</th>
+        </tr>
+      </thead>
+        <tbody>
+          <tr *ngFor="let item of dataSup | paginate: { itemsPerPage: 5, currentPage: currentPage }; let i = index">
+            <td scope="row">{{ (currentPage - 1) * 5 + i + 1 }}</td>
+            
+            <td>{{item?.name}}</td>
+            <td>
+            <img (click)="viewImage(item?.img)" style="width: 50px; height: 50px; border-radius: 9rem;" src="{{ item?.img }}">
+            </td>
+            <td>{{item?.website}}</td>
+            <td>{{item?.description}}</td>
+            <td>{{ formatDate(item.created_at) }}</td>
+            <td>{{ formatDate(item.updated_at) }}</td>
+            <td>
+              <button class="btn btn-primary mr-1" (click)="updateSup(item)" >Update</button>
+              <button class="btn btn-danger mr-1" (click)="deleteSup(item.id)">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+    </table>
+    <div class="pagination">
+      <pagination-controls (pageChange)="currentPage = $event"></pagination-controls>
+      <span style="margin-left: 6px; margin-top: 4px;"> {{ dataSup?.length }} Items </span>
+    </div>
+  </div>
+  
+  

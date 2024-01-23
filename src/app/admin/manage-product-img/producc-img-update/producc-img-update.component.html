@@ -1,0 +1,44 @@
+<h2 mat-dialog-title>Edit Products IMG</h2>
+<hr>
+<mat-dialog-content>
+  <form [formGroup]="editForm">
+    <div class="form-outline mb-4">
+      <input formControlName="img" type="text" id="form3Example3" class="form-control form-control-lg"
+        placeholder="Image" />
+
+      <div *ngIf="editForm.controls['img'].errors && editForm.controls['img'].dirty" class="text-danger">
+        <div *ngIf="editForm.controls['img'].errors.required"> Image Url is required</div>
+      </div>
+    </div>
+      <div class="form-outline mb-4">
+        <select formControlName="product" class="form-control">
+            <option value="">-- Select product --</option>
+            <option *ngFor="let singleProduct of product" [value]="singleProduct?.id">{{ singleProduct?.name | titlecase }}</option>
+          </select>
+        <div *ngIf="editForm.controls['product'].errors && editForm.controls['product'].dirty" class="text-danger">
+          <div *ngIf="editForm.controls['product'].errors.required"> Supplier is required</div>
+        </div>
+    </div>
+  </form>
+</mat-dialog-content>
+<hr>
+<mat-dialog-actions class="d-flex justify-content-end">
+  <div class="text-center">
+    <button
+      [style]="{
+        'min-width': '80px'
+      }"
+      (click)="onNoClick()"
+      type="button"
+      class="btn btn-danger"> Cancel </button>
+
+    <button
+      [style]="{
+        'min-width': '80px'
+      }"
+      (click)="edit()"
+      [disabled]="editForm.invalid"
+      type="button"
+      class="btn btn-primary m-lg-2"> Submit </button>
+  </div>
+</mat-dialog-actions>

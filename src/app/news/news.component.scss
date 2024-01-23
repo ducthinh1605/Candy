@@ -1,0 +1,34 @@
+/* CSS for news detail page */
+.news-detail-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex; /* Sử dụng flexbox để sắp xếp các thành phần */
+    justify-content: center; /* Căn giữa các thành phần */
+    flex-direction: column; /* Xếp theo chiều dọc */
+  }
+  
+  .news-header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .news-image {
+    width: 70%; /* Chiều rộng ảnh tương đối */
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: 20px; /* Khoảng cách giữa ảnh và tiêu đề */
+  }
+  
+  .news-title {
+    font-size: 28px; /* Tăng kích thước tiêu đề */
+    margin-top: 10px;
+    margin-bottom: 15px;
+    font-weight: bold; /* Sử dụng bold để làm in đậm cho tiêu đề */
+  }
+  
+  .news-content p {
+    font-size: 18px; /* Tăng kích thước nội dung */
+    line-height: 1.8;
+  }
+  

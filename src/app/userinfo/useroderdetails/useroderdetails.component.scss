@@ -1,0 +1,33 @@
+/* Style for order details */
+.delivery-info {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+  }
+  
+  .delivery-info p {
+    margin: 5px 0;
+  }
+  
+  /* Style for buttons in mat-card-actions */
+  mat-card-actions button {
+    margin-right: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  mat-card-actions button:hover {
+    background-color: #0056b3;
+  }
+  .example-card {
+    margin-bottom: 20px; /* Adjust this value to increase or decrease the space between cards */
+  }
+  
+  

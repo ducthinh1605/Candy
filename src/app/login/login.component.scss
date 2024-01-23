@@ -1,0 +1,104 @@
+
+a{
+    text-decoration: none;
+    color: white;
+  }
+  .background{
+    background-image: url(https://media.istockphoto.com/id/1218598104/photo/colorful-candies-top-view-frame-over-a-pink-background.webp?b=1&s=170667a&w=0&k=20&c=7UTrOaKPKDtevKMyQVB1WHUArcsoAE8oB920BC1sHbA=);
+  }
+  .example-section {
+    display: flex;
+    align-content: stretch;
+    height: 60px;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+  
+  .logo {
+    vertical-align: middle;
+    width: 35vh;
+    height: 23vh;
+    padding-bottom: 5px;
+  }
+  .example-button-row button,
+  .example-button-row a {
+    margin-right: 8px;
+  }
+  
+  .example-disabled {
+    display: inline-block;
+  }
+  .example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+  }
+  
+  .example-full-width {
+    width: 70%;
+    text-align: center;
+  }
+  
+  h1 {
+    font-size: 50px;
+    font-family:sans-serif;
+    color: #110000;
+  }
+  td {
+    padding-right: 8px;
+  }
+  .main__container {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+  
+  .login-card {
+    position: relative;
+    display: flex;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    width: 50%;
+    min-height: 80vh;
+    animation: fadein 1s ease-in-out;
+  }
+  
+  .login-header {
+    font-size: 2.5rem;
+    display: block;
+    margin-bottom: 2rem;
+    color: #0c1066;
+    letter-spacing: 0.2rem;
+    font-weight: bold;
+    animation: fadein 1.75s ease-in-out;
+  }
+  
+  .login-content {
+    flex: 2 2;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    animation: fadein 1.5s ease-in-out;
+    min-height: 100%;
+    width: 20%;
+  }
+  
+  .login-form {
+    display: flex;
+    flex-flow: column;
+    width: 80%;
+    align-items: center;
+    animation: slidedown 2s ease-in-out;
+  }
+  .input {
+    border-radius: 9rem;
+    width: 100%;
+  
+  }
+  
+  

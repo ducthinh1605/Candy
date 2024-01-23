@@ -1,0 +1,126 @@
+<app-header></app-header>
+  <section class="padding-y bg-light">
+  <div class="container">
+  <div class="row">
+    <main class="col-xl-8 col-lg-8">
+      <article class="card">
+        <div class="content-body">
+          <form [formGroup]="checkoutForm">
+            <h5 class="card-title"> Thanh Toán </h5>
+            <div class="row">
+              <div class="col-6 mb-3">
+                <label class="form-label">Họ và tên</label>
+                <input formControlName="order_name" type="text" class="form-control">
+                <div *ngIf="checkoutForm.controls['order_name']?.errors && checkoutForm.controls['order_name'].dirty" class="text-danger">
+                  <div *ngIf="checkoutForm.controls['order_name']?.errors?.required">Name is required</div>
+                </div>
+              </div>
+              <div class="col-6 mb-3">
+                <label class="form-label">Phone</label>
+                <input formControlName="order_phone" type="phone" class="form-control" placeholder="">
+                <div *ngIf="checkoutForm.controls['order_phone']?.errors && checkoutForm.controls['order_phone'].dirty" class="text-danger">
+                  <div *ngIf="checkoutForm.controls['order_phone']?.errors?.required">Phone number is required</div>
+                  <div *ngIf="checkoutForm.controls['order_phone']?.errors?.pattern">Invalid phone number format</div>
+                </div>
+              </div>
+            </div>
+          </form>
+          <hr class="my-4">
+          <form [formGroup]="checkoutForm">
+            <h5 class="card-title">Thông tin giao hàng</h5>
+            <div class="row">
+              <div class="col-md-4 mb-3">
+                <label for="" class="form-label">Tỉnh / thành phố</label>
+                <input formControlName="order_city" type="text" class="form-control">
+                <div *ngIf="checkoutForm.controls['order_city']?.errors && checkoutForm.controls['order_city'].dirty" class="text-danger">
+                  <div *ngIf="checkoutForm.controls['order_city']?.errors?.required">City is required</div>
+                </div>
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="" class="form-label">Quận / huyện</label>
+                <input formControlName="order_district" type="text" class="form-control">
+                <div *ngIf="checkoutForm.controls['order_district']?.errors && checkoutForm.controls['order_district'].dirty" class="text-danger">
+                  <div *ngIf="checkoutForm.controls['order_district']?.errors?.required">District is required</div>
+                </div>
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="" class="form-label">Phường / xã  </label>
+                <input formControlName="order_wards" type="text" class="form-control">
+                <div *ngIf="checkoutForm.controls['order_wards']?.errors && checkoutForm.controls['order_wards'].dirty" class="text-danger">
+                  <div *ngIf="checkoutForm.controls['order_wards']?.errors?.required">Ward is required</div>
+                </div>
+              </div>
+              
+              <div class="col-md-12 mb-3">
+                <label for="" class="form-label">Đường</label>
+                <input formControlName="order_street" type="text" class="form-control">
+                <div *ngIf="checkoutForm.controls['order_street']?.errors && checkoutForm.controls['order_street'].dirty" class="text-danger">
+                  <div *ngIf="checkoutForm.controls['order_street']?.errors?.required">Street is required</div>
+                </div>
+              </div>
+              <div class="col-md-12 mb-3">
+                <label for="" class="form-label">Ghi chú</label>
+                <input formControlName="note" type="text" class="form-control">
+                <div *ngIf="checkoutForm.controls['note']?.errors && checkoutForm.controls['note'].dirty" class="text-danger">
+                  <div *ngIf="checkoutForm.controls['note']?.errors?.required">note is required</div>
+                </div>
+              </div>
+
+             
+              
+            </div>
+          
+            <div class="float-end">
+              <!-- <button class="btn btn-light">Cancel</button> -->
+              <button (click)="checkout(cartData)" [disabled]="checkoutForm.invalid || checkoutForm.Invalid" class="btn btn-success">Mua hàng</button>
+            </div>
+          </form>
+        </div>
+      </article>
+
+    </main>
+    <aside class="col-xl-4 col-lg-4">
+      <article class="ms-lg-4 mt-4 mt-lg-0" style="max-width: 320px">
+          <h6 class="card-title">Summary</h6>
+
+          <dl class="dlist-align">
+            <dt>Tổng tiền:</dt>
+            <dd class="text-end">
+              <span class="text-danger"> {{ getTotalPrice() | currency:'VND' }} </span>
+            </dd>
+          </dl>
+          <dl class="dlist-align">
+            <dt>Phí Ship:</dt>
+            <dd class="text-end text-danger">
+              {{ getTotalAfterShipPrice() < 150000 ? '+ 30,000' : 'Miễn phí' }} <!-- Hiển thị phí ship nếu tổng tiền nhỏ hơn 150,000, ngược lại là Miễn phí -->
+            </dd>
+          </dl>
+          <hr>
+          <dl class="dlist-align">
+            <dt>Total:</dt>
+            <dd class="text-end">
+              <strong class="text-dark">
+                {{ (getTotalPrice() + (getTotalPrice() < 150000 ? 30000 : 0)) | currency:'VND' }}
+              </strong>
+            </dd>
+          </dl>
+          
+
+          <hr>
+          <h6 class="mb-4">Items in cart</h6>
+
+          <section *ngFor="let item of cartData" class="itemside mb-4">
+            <div class="aside">
+              <img [src]="item?.pro_id?.img" class="border img-sm rounded">
+            </div>
+            <div class="aside">
+              <p class="">{{ item?.pro_id?.name }} x {{ item?.qty }} </p>
+            </div>
+          </section>
+      </article>
+    </aside>
+  </div>
+  <br><br>
+  </div>
+  </section>
+  <app-footer></app-footer>

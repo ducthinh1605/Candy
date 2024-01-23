@@ -1,0 +1,35 @@
+<!-- <h1>Confirm Email</h1>
+<p>We have sent a confirmation email to {{ data.email }}. Please check your inbox and confirm the registration.</p>
+<mat-form-field>
+  <input matInput placeholder="Nhập mã xác nhận" [(ngModel)]="verificationCode">
+</mat-form-field>
+<button mat-button (click)="confirm()">Confirm</button>
+<button mat-button [mat-dialog-close]="false">Cancel</button> -->
+<style>
+    .wrapper {
+      text-align: center;
+      margin: 10px; /* Add margin around the whole form */
+    }
+  
+    mat-form-field {
+      margin-bottom: 15px; /* Add margin below the input field */
+    }
+  
+    .btn {
+      margin-right: 10px; /* Add margin between the buttons */
+      margin-left: 10px;
+    }
+  </style>
+<body>
+    <div class="wrapper">
+      <!-- Confirm Email Form -->
+        <h1>Xác nhận Email</h1>
+        <p>Chúng tôi gã gửi mã xác nhận đến {{ data.email }}. Vui lòng kiểm tra trong hôp thư của bạn.</p>
+        <mat-form-field>
+          <input matInput placeholder="Nhập mã xác nhận" [(ngModel)]="verificationCode">
+        </mat-form-field>
+        <button class="btn btn-lg btn-primary btn-block" (click)="confirm()"> Xác nhận </button>
+        <button class="btn btn-lg btn-primary btn-block" [mat-dialog-close]="false"> Hủy </button>
+      </div>
+</body>
+

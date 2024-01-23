@@ -1,0 +1,50 @@
+<form action="" class="form-inline" method="post" role="form">
+    <button type="submit" (click)="add()" class="btn btn-primary">Add new</button>
+  </form>
+  
+  <hr>
+  
+  <div class="mat-elevation-z8" id="father">
+    <table class="table ">
+      <thead class="head">
+        <tr>
+          <th>No.</th>
+          <th>Product</th>
+          <th >IMG URL</th>
+          <th>Sub IMG</th>
+          <th>Created_at</th>
+          <th>Updated_at</th>
+          
+        </tr>
+      </thead>
+        <tbody>
+          <tr *ngFor="let item of productIMG | paginate: { itemsPerPage: 6, currentPage: currentPage }; let i = index">
+            <td scope="row">{{ (currentPage - 1) * 6 + i + 1 }}</td>
+            <td>{{getProductName(item?.pro_id?.id) | titlecase}}</td>
+            
+            <td>
+                <img (click)="viewImage(getProductMainIMG(item?.pro_id?.id))" style="width: 50px; height: 50px; border-radius: 9rem;" [src]="(getProductMainIMG(item?.pro_id?.id))">
+            </td>
+            <td>
+              <img (click)="viewImage(item?.img)" style="width: 50px; height: 50px; border-radius: 9rem;" src="{{ item?.img }}">
+            </td>
+            <td>{{ formatDate(item.created_at) }}</td>
+            <td>{{ formatDate(item.updated_at) }}</td>
+            
+            
+            <td class="button-container">
+              <button (click)="update(item)" class="btn btn-primary btn-sm mr-1">Update</button>
+              <button class="btn btn-danger btn-sm" (click)="deleteProduct(item)">Delete</button>
+            </td>
+            
+            
+          </tr>
+        </tbody>
+    </table>
+    <div class="pagination">
+      <pagination-controls (pageChange)="currentPage = $event"></pagination-controls>
+      <span style="margin-left: 6px; margin-top: 4px;"> {{ productIMG?.length }} Items </span>
+    </div>
+  </div>
+  
+  

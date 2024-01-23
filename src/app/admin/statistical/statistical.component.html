@@ -1,0 +1,102 @@
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12 col-xl-8">
+            <!-- Card for Total Revenue -->
+            <div class="card m-b-30">
+                <div class="card-header">                                
+                    <h5 class="card-title mb-0">Tổng doanh thu</h5>
+                </div>
+                <div class="card-body">                                
+                    <div class="row align-items-center">
+                        <div class="col-6 col-lg-9">
+                            <div class="mb-3">
+                                <label for="start_date">Start Date:</label>
+                                <input type="date" id="start_date" name="start_date" class="form-control" [(ngModel)]="startDate">
+                            </div>
+                            <div class="mb-3">
+                                <label for="end_date">End Date:</label>
+                                <input type="date" id="end_date" name="end_date" class="form-control" [(ngModel)]="endDate" max="{{ getCurrentDate() }}">
+                            </div>
+                            <button class="btn btn-primary" (click)="getRevenue()">Lấy tổng doanh thu</button>
+                            <!-- ... (rest of your code) ... -->
+                        </div>
+                        <div class="col-6 col-lg-3">
+                            <div class="border-success border rounded text-center py-3 mb-3">
+                                <h3 class="card-title text-success mb-1">{{ revenue| currency:'VND' }}</h3>
+                                <p class="text-success mb-0">Doanh thu</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="card m-b-30">
+                <div class="card-header">                                
+                    <h5 class="card-title mb-0">Tổng sản phẩm và đơn hàng đã bán</h5>
+                </div>
+                <div class="card-body">                                
+                    <div class="row align-items-center">
+                        <div class="col-6 col-lg-9">
+                            <div class="mb-3">
+                                <label for="start_date">Start Date:</label>
+                                <input type="date" id="start_date" name="start_date" class="form-control" [(ngModel)]="startDate">
+                            </div>
+                            <div class="mb-3">
+                                <label for="end_date">End Date:</label>
+                                <input type="date" id="end_date" name="end_date" class="form-control" [(ngModel)]="endDate" max="{{ getCurrentDate() }}">
+                            </div>
+                            <button class="btn btn-primary" (click)="getData()">Lấy Tổng sản phẩm và đơn hàng đã bán</button>
+                            <!-- ... (rest of your code) ... -->
+                        </div>
+                        <div class="col-6 col-lg-3">
+                            <div class="border-warning  border rounded text-center py-3 mb-3">
+                                <h3 class="card-title text-warning  mb-1">{{ orderSold}} Đơn hàng</h3>
+                                <h3 class="card-title text-warning  mb-1">{{ productSold}} Sản phẩm</h3>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Right-side column for User Information -->
+<div class="col-lg-12 col-xl-4">
+    <div class="card m-b-30">
+        <div class="row align-items-center">
+            <div class="col-12">
+                <div class="mb-3">
+                    <label for="start_date">Start Date:</label>
+                    <input type="date" id="start_date" name="start_date" class="form-control" [(ngModel)]="startDate">
+                </div>
+                <div class="mb-3">
+                    <label for="end_date">End Date:</label>
+                    <input type="date" id="end_date" name="end_date" class="form-control" [(ngModel)]="endDate" max="{{ getCurrentDate() }}">
+                </div>
+            </div>
+            <div class="col-12">
+                <button class="btn btn-primary" (click)="getTopUser()">Lấy thông tin người dùng chi tiêu cao</button>
+            </div>
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Tên</th>
+                    <th>Email</th>
+                    <th>Đơn hàng</th>
+                    <th>Số tiền </th>
+                </tr>
+            </thead>
+            <tbody *ngFor="let item of topUsers">
+                <td>{{item.userName}}</td>
+                <td>{{item.userEmail}}</td>
+                <td style="text-align: center;">{{item.totalOrders}}</td>
+                <td>{{item.totalSpending|currency:'VND'}}</td>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+    </div>
+</div>
+

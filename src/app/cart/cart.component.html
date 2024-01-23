@@ -1,0 +1,66 @@
+<app-header></app-header>
+<section class="pt-5 pb-5">
+  <div class="container">
+    <div class="row w-100">
+        <div *ngFor="let item of cartData" class="col-lg-12 col-md-12 col-12">
+            <table  id="shoppingCart" class="table table-condensed table-responsive">
+                <thead>
+                    <tr>
+                        <th style="width:60%">Product</th>
+                        <th style="width:12%">Price</th>
+                        <th style="width:10%">Quantity</th>
+                        <th style="width:16%"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td data-th="Product">
+                            <div class="row">
+                                <div class="col-md-3 text-left">
+                                    <img [src]="item.pro_id.img" alt="" class="img-fluid d-none d-md-block rounded mb-2 shadow ">
+                                </div>
+                                <div class="col-md-9 text-left mt-sm-2">
+                                    <h4>{{item.pro_id.name}}</h4>
+                                    
+                                </div>
+                            </div>
+                        </td>
+                        <td data-th="Price">{{item.pro_id.price}}</td>
+                        <div class="d-flex align-items-center">
+                            <button (click)="decrementQty(item)" style="margin-right: 7px;" class="btn btn-white border-secondary bg-white btn-md mb-2 mr-2">
+                              <i class="fas fa-minus"></i>
+                            </button>
+                            <h4>{{ item.qty }}</h4>
+                            <button [disabled]="item.qty >= item.pro_id.qty" (click)="incrementQty(item)" style="margin-left: 7px;" class="btn btn-white border-secondary bg-white btn-md mb-2 ml-2">
+                              <i class="fas fa-plus"></i>
+                            </button>
+                          </div>
+                        <td class="actions" data-th="">
+                            <div class="text-right">
+                                <button (click)="deleteCartItem(item)" class="btn btn-white border-secondary bg-white btn-md mb-2">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="float-right text-right">
+                <h4>Subtotal:</h4>
+                <h1>{{ getTotalPrice(item) }}</h1>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-4 d-flex align-items-center">
+        <div class="col-sm-6 order-md-2 text-right">
+            <button [disabled]="!cartData || cartData.length === 0" (click)="checkout()" class="btn btn-primary mb-4 btn-lg pl-5 pr-5">Checkout</button>
+        </div>
+        <div class="col-sm-6 mb-3 mb-m-1 order-md-1 text-md-left">
+            <a [routerLink]="['/products']">
+                <i class="fas fa-arrow-left mr-2"></i> Continue Shopping
+            </a>
+        </div>
+    </div>
+</div>
+</section>
+<app-footer></app-footer>

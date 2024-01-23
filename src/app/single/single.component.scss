@@ -1,0 +1,16 @@
+/* Giảm khoảng trắng xung quanh hình ảnh lớn */
+.img-big-wrap img {
+    display: block;
+  }
+  
+  /* Giảm khoảng trắng xung quanh hình ảnh nhỏ */
+  .thumbs-wrap .item-thumb img {
+    display: block;
+    margin: 5px; /* Điều chỉnh margin theo ý bạn */
+    padding: 0; /* Loại bỏ padding */
+  }
+  .bg-primary {
+    background-color: #CD5C5C !important; /* Màu nền của thanh navbar */
+    color: #fff !important; /* Màu chữ trong thanh navbar */
+  }
+  

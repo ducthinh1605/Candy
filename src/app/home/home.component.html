@@ -1,0 +1,72 @@
+
+<app-header></app-header>
+<app-category (clickCategoryEvent)="onCategoryChange($event)"></app-category>
+<div>
+  <section class="padding-top">
+    <div class="container">
+      <header class="section-heading">
+        <h3 class="section-title">Top sản phẩm bán chạy</h3>
+      </header>
+      <div class="row">
+        <div *ngFor="let product of topSell" class="col-lg-3 col-md-6 col-sm-6">
+          <figure class="card card-product-grid">
+            <a (click)="navigateDetails(product)" class="img-wrap" >
+              <span class="topbar"> <b class="badge bg-success"> Offer </b> </span>
+              <img src="{{ product.img }}">
+            </a>
+            <figcaption class="info-wrap border-top">
+              <a class="float-end btn btn-light btn-icon"> <i class="fa fa-heart"></i> </a>
+              <a class="title text-truncate"> {{ product.name }} </a>
+              <!-- <small class="text-muted">Sizes: S, M, XL</small> -->
+              <div class="price-wrap">
+                <span class="price"> {{ product.price | currency:'VND' }} </span> <del class="price-old">đ120.000</del>
+              </div>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+    </section>
+  <section class="padding-top">
+    <div class="container">
+      <header class="section-heading">
+        <h3 class="section-title">New products</h3>
+      </header>
+      <div class="row">
+        <div *ngFor="let product of products" class="col-lg-3 col-md-6 col-sm-6">
+          <figure class="card card-product-grid">
+            <a (click)="navigateDetails(product)" class="img-wrap" >
+              <span class="topbar"> <b class="badge bg-success"> Offer </b> </span>
+              <img src="{{ product.img }}">
+            </a>
+            <figcaption class="info-wrap border-top">
+              <a class="float-end btn btn-light btn-icon"> <i class="fa fa-heart"></i> </a>
+              <a class="title text-truncate"> {{ product.name }} </a>
+              <!-- <small class="text-muted">Sizes: S, M, XL</small> -->
+              <div class="price-wrap">
+                <span class="price"> {{ product.price | currency:'VND' }} </span> <del class="price-old">đ120.000</del>
+              </div>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+    </section>
+   <!-- news.component.html -->
+    <div class="containers">
+      <div class="text-center mb-4">
+        <h1 class="section-title px-5"><span class="px-2">----<b>News</b>----</span></h1>
+      </div>
+      <div class="cards-decks">
+        <div *ngFor="let item of news; let isFirst = first" class="cards"[ngClass]="{'first-card': isFirst}" (click)="detailsNews(item)">
+          <img [src]="item.img" class="cards-img-top" alt="News Image">
+          <div class="cards-body">
+            <h5 class="cards-title"> <strong>{{ item.title }}</strong></h5>
+            <p class="cards-text">{{ item.content | slice:0:100 }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+    <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+<app-footer></app-footer>

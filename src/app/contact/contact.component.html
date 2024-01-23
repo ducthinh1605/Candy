@@ -1,0 +1,30 @@
+<app-header></app-header>
+<div class="container">
+    <div class="contact-form-container">
+    <form class="contact-form"[formGroup]="contactForm">
+      <span class="form-header">Liên hệ với chúng tôi</span>
+      <textarea formControlName="content" cols="30" rows="10" class="message" placeholder="Nội dung đóng góp"></textarea>
+      <div *ngIf="contactForm.controls['content']?.errors && contactForm.controls['content'].dirty" class="text-danger">
+        <div *ngIf="contactForm.controls['content']?.errors?.required">Category name is required</div>
+      </div>
+      <input formControlName="" cols="30" rows="10" class="message" placeholder="Tên">
+      <div *ngIf="contactForm.controls['']?.errors && contactForm.controls[''].dirty" class="text-danger">
+        <div *ngIf="contactForm.controls['']?.errors?.required">Category name is required</div>
+      </div>
+      <input formControlName="email" cols="30" rows="10" class="message" placeholder="email">
+      <div *ngIf="contactForm.controls['email']?.errors && contactForm.controls['email'].dirty" class="text-danger">
+        <div *ngIf="contactForm.controls['email']?.errors?.required">email is required</div>
+      </div>
+      <button
+      [style]="{
+        'min-width': '80px'
+      }"
+      [disabled]="contactForm.invalid"
+      (click)="add()"
+      type="button"
+      class="btn btn-primary m-lg-2"> Submit </button>
+    </form>
+      </div>
+  </div>
+  <app-footer></app-footer>
+ 

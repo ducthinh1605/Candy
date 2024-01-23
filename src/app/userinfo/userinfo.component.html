@@ -1,0 +1,102 @@
+
+<app-header></app-header>
+<br>
+<div class="container">
+    <div class="row">
+            <div class="col-lg-4">
+               <div class="profile-card-4 z-depth-3">
+                <div class="card">
+                  <div class="card-body text-center bg-primary rounded-top">
+                   <div class="user-box">
+                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="user avatar">
+                  </div>
+                  <h5 class="mb-1 text-white">{{userData?.name}}</h5>
+                 </div>
+                  <div class="card-body">
+                    <ul class="list-group shadow-none">
+                    <li class="list-group-item">
+                      <div class="list-icon">
+                        <i class="fa fa-phone-square"></i>
+                      </div>
+                      <div class="list-details">
+                        <span>{{userData?.phone}}</span>
+                        <small>Số Điện Thoại</small>
+                      </div>
+                    </li>
+                    <li class="list-group-item">
+                      <div class="list-icon">
+                        <i class="fa fa-envelope"></i>
+                      </div>
+                      <div class="list-details">
+                        <span>{{userData?.email}}</span>
+                        <small>Địa chỉ email</small>
+                      </div>
+                    </li>
+                    <li class="list-group-item"(click)="history()">
+                      <div class="list-icon">
+                        <i class="fa fa-history"></i>
+                      </div>
+                      <div class="list-details" >
+                        <span >Lịch sử mua hàng</span>  
+                      </div>
+                      
+                    </li>
+                    </ul>
+                   </div>
+                 </div>
+               </div>
+            </div>
+            <div class="col-lg-8">
+               <div class="card z-depth-3">
+                <div class="card-body">
+                <ul class="nav nav-pills nav-pills-primary nav-justified">
+                    <li class="nav-item">
+                        <a routerLink="/user" data-target="#messages" data-toggle="pill" class="nav-link"><i class="icon-envelope-open"></i> <span class="hidden-xs">Đơn hàng</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a routerLink="/edit" routerLinkActive="active" class="nav-link"><i class="icon-note"></i> <span class="hidden-xs">Thay đổi thông tin</span></a>
+                    </li>
+                </ul>
+                <div class="tab-orders-container">
+                    <div class="tab-pane active show" id="profile">
+                        <div class="row">
+                            <div class="col-md-10">
+                                <mat-card class="example-card" *ngFor="let item of userOrders" [ngClass]="{'status-pending': item.status === 0, 'status-confirmed': item.status === 1, 'status-shipping': item.status === 2, 'status-delivered': item.status === 3}">
+                                    <mat-card-header>  
+                                      <mat-card-title>Giá tiền: {{item?.total| currency:'VND'}}</mat-card-title>
+                                    </mat-card-header>
+                                    <mat-card-content>
+                                        <td>
+                                            <div class="delivery-info">
+                                              <p><strong>Tên người nhận:</strong> {{ item?.orderName | titlecase }}</p>
+                                              <p><strong>Số điện thoại:</strong> {{ item?.orderPhone }}</p>
+                                              <p><strong>Địa chỉ:</strong> {{ item?.orderStreet }}, {{ item?.orderWard }}, {{ item?.orderDistrict }}, {{ item?.orderCity }}</p>
+                                            </div>
+                                          </td>
+                                          <td>
+                                            <div class="delivery-info">
+                                            <p><strong>Phương thức thanh toán:</strong> {{ item?.pmId?.paymentName }}</p>
+                                            <p><strong>Ghi chú:</strong> {{ item?.note }}</p>
+                                            <p><strong>Trạng thái đơn hàng:</strong> {{getStatusName(item?.status) }}</p>
+                                            </div>
+                                          </td>
+                                    </mat-card-content>
+                                    <mat-card-actions>
+                                        <button class="btn btn-primary m-lg-2" (click)="detail(item)">Chi tiết đơn hàng</button>
+                                        <button type="button" class="btn btn-danger m-lg-2" (click)="deleteOrder(item)">Hủy đơn hàng</button>
+                                        <button *ngIf="item.status === 3" type="button" class="btn btn-warning m-lg-2" (click)="markOrderAsReceived(item)">Đã nhận được hàng</button>
+                                      </mat-card-actions>
+                                  </mat-card>
+                                  <br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+          </div>
+            
+        </div>
+    </div>
+    <br>
+<app-footer></app-footer>

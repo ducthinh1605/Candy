@@ -1,0 +1,59 @@
+<h2 mat-dialog-title>Edit News</h2>
+<hr>
+<mat-dialog-content>
+  <form [formGroup]="editForm">
+    <div class="form-outline mb-4">
+      <input formControlName="title" type="text" id="form3Example3" class="form-control form-control-lg"
+        placeholder="title" />
+
+        <div *ngIf="editForm.controls['title']?.errors && editForm.controls['title'].dirty" class="text-danger">
+          <div *ngIf="editForm.controls['title']?.errors?.required">tittle is required</div>
+        </div>
+    </div>
+
+    <div class="form-outline mb-4">
+      <!-- <input formControlName="img" type="text" id="form3Example3" class="form-control form-control-lg"
+        placeholder="img" />
+
+      <div *ngIf="editForm.controls['img']?.errors && editForm.controls['img'].dirty" class="text-danger">
+        <div *ngIf="editForm.controls['img']?.errors?.required">img is required</div>
+      </div> -->
+      <div class="mb-4">
+        <ngx-uploadcare-widget
+          public-key="99e830eafb2115021a43"
+          (on-upload-complete)="onUploadComplete($event)">
+        </ngx-uploadcare-widget>
+      </div>
+    </div>
+
+    <div class="form-outline mb-4">
+      <input [min]="0" formControlName="content" type="text" id="form3Example3" class="form-control form-control-lg"
+        placeholder="content" />
+
+      <div *ngIf="editForm.controls['content'].errors && editForm.controls['content'].dirty" class="text-danger">
+        <div *ngIf="editForm.controls['content'].errors.required"> website is required</div>
+      </div>
+    </div>
+  </form>
+</mat-dialog-content>
+<hr>
+<mat-dialog-actions class="d-flex justify-content-end">
+  <div class="text-center">
+    <button
+      [style]="{
+        'min-width': '80px'
+      }"
+      (click)="onNoClick()"
+      type="button"
+      class="btn btn-danger"> Cancel </button>
+
+    <button
+      [style]="{
+        'min-width': '80px'
+      }"
+      (click)="edit()"
+      [disabled]="editForm.invalid"
+      type="button"
+      class="btn btn-primary m-lg-2"> Submit </button>
+  </div>
+</mat-dialog-actions>

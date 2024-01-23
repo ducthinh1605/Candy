@@ -1,0 +1,36 @@
+<h2 mat-dialog-title>Add new Category</h2>
+<hr>
+<mat-dialog-content>
+  <form [formGroup]="addNewForm">
+    <div class="form-outline mb-4">
+      <input formControlName="name" type="text" id="form3Example3" class="form-control form-control-lg"
+        placeholder="Name of category" />
+
+      <div *ngIf="addNewForm.controls['name']?.errors && addNewForm.controls['name'].dirty" class="text-danger">
+        <div *ngIf="addNewForm.controls['name']?.errors?.required">Category name is required</div>
+      </div>
+    </div>
+  </form>
+</mat-dialog-content>
+<hr>
+<mat-dialog-actions class="d-flex justify-content-end">
+  <!-- <button mat-button (click)="onNoClick()">Cancel</button> -->
+  <div class="text-center">
+    <button
+      [style]="{
+        'min-width': '80px'
+      }"
+      (click)="onNoClick()"
+      type="button"
+      class="btn btn-danger"> Cancel </button>
+
+    <button
+      [style]="{
+        'min-width': '80px'
+      }"
+      (click)="add()"
+    
+      type="button"
+      class="btn btn-primary m-lg-2"> Submit </button>
+  </div>
+</mat-dialog-actions>

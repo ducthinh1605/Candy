@@ -1,0 +1,53 @@
+
+  <hr>
+  <div class="mat-elevation-z8" id="father">
+    <table class="table ">
+      <thead class="head">
+        <tr>
+          <th>No.</th>
+          <th>Thông tin giao hàng</th>
+          <th >Tổng tiền</th>
+          <th>Ghi chú</th>
+          <th>Trạng thái</th>
+          <th>Phương thức thanh toán</th>
+          <th>Khởi tạo lúc</th>
+          <select [(ngModel)]="selectedStatus" (change)="onStatusFilterChange(selectedStatus)">
+            <option value="5">All</option>
+            <option value="0">Chờ xác nhận</option>
+            <option value="1">Đã xác nhận</option>
+            <option value="2">Đang giao</option>
+            <option value="3">Đã giao thành công</option>
+            <option value="4">Đơn hàng đã hoàn thành</option>
+          </select>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of orders | paginate: { itemsPerPage: 5, currentPage: currentPage }; let i = index">
+          <td scope="row">{{ (currentPage - 1) * 5 + i + 1 }}</td>
+          <td>
+            <div class="delivery-info">
+              <p><strong>Tên người nhận:</strong> {{ item?.orderName | titlecase }}</p>
+              <p><strong>Số điện thoại:</strong> {{ item?.orderPhone }}</p>
+              <p><strong>Địa chỉ:</strong> {{ item?.orderStreet }}, {{ item?.orderWard }}, {{ item?.orderDistrict }}, {{ item?.orderCity }}</p>
+            </div>
+          </td>
+          <td>{{ item?.total }}</td>
+          <td>{{ item?.note }}</td>
+          <td>{{ getStatusName(item?.status) }}</td>
+          <td>{{ item?.pmId?.paymentName }}</td>
+          <td>{{ formatDate(item?.updatedAt) }}</td>
+      
+          <td class="button-container">
+            <button class="btn btn-primary mr-1" (click)="detail(item)" >Detail</button>
+            <button class="btn btn-danger mr-1" (click)="deleteOrder(item)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="pagination">
+      <pagination-controls (pageChange)="currentPage = $event"></pagination-controls>
+      <span style="margin-left: 6px; margin-top: 4px;"> {{ orders?.length }} Items </span>
+    </div>
+  </div>
+  
+  

@@ -1,0 +1,41 @@
+<section class="section-intro padding-top-sm">
+  <div class="container">
+    <main class="card p-3">
+      <div class="row">
+        <aside class="col-lg-3">
+          <!-- Categories -->
+          <div class="categories">
+            <h3>
+              <button class="btn btn-link" (click)="toggleSection('categories')">Danh mục</button>
+            </h3>
+            <nav id="categories" class="nav flex-column nav-pills" [ngStyle]="{'display': isCategoryVisible ? 'block' : 'none'}">
+              <a class="nav-link" aria-current="page" *ngFor="let category of dataCate" (click)="onClickCategory(category)">{{ category.name?.toString() | titlecase }}</a>
+            </nav>
+          </div>
+        </aside>
+        <div class="col-lg-9">
+          <article class="card-banner p-5 bg-primary" style="height: 360px" >
+            <div style="max-width: 500px">
+              <h2 class="text-white">Chất lượng và uy tín luôn được đặt <br> lên trên tất cả </h2>
+              <p class="text-white">chào mừng bạn đã đến với candyTT, chúng tôi chuyên cung cấp các mặt hàng bánh kẹo chất lượng với giá cả phải chăng</p>
+              <a routerLink="/products" class="btn btn-warning"> Xem thêm </a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </main>
+     <!-- Suppliers -->
+   <div class="supplier-wrapper">
+    <div class="supplier-scroll">
+      <ul class="supplier-list">
+        <li *ngFor="let supplier of dataSup" (click)="onClickSupplier(supplier)">
+          <div class="supplier-item">
+            <img [src]="supplier.img" alt="{{ supplier.name }}" class="supplier-image">
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  </div>
+  
+</section>

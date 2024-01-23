@@ -1,0 +1,136 @@
+<app-header></app-header>
+<br>
+<div class="container">
+    <div class="row">
+            <div class="col-lg-4">
+               <div class="profile-card-4 z-depth-3">
+                <div class="card">
+                  <div class="card-body text-center bg-primary rounded-top">
+                   <div class="user-box">
+                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="user avatar">
+                  </div>
+                  <h5 class="mb-1 text-white">{{userData?.name}}</h5>
+                 </div>
+                  <div class="card-body">
+                    <ul class="list-group shadow-none">
+                    <li class="list-group-item">
+                      <div class="list-icon">
+                        <i class="fa fa-phone-square"></i>
+                      </div>
+                      <div class="list-details">
+                        <span>{{userData?.phone}}</span>
+                        <small>Số Điện Thoại</small>
+                      </div>
+                    </li>
+                    <li class="list-group-item">
+                      <div class="list-icon">
+                        <i class="fa fa-envelope"></i>
+                      </div>
+                      <div class="list-details">
+                        <span>{{userData?.email}}</span>
+                        <small>Địa chỉ email</small>
+                      </div>
+                    </li>
+                    </ul>
+                   </div>
+                 </div>
+               </div>
+            </div>
+            <div class="col-lg-8">
+               <div class="card z-depth-3">
+                <div class="card-body">
+                <ul class="nav nav-pills nav-pills-primary nav-justified">
+                    <li class="nav-item">
+                        <a routerLink="/user" routerLinkActive="active"  data-toggle="pill" class="nav-link"><i class="icon-envelope-open"></i> <span class="hidden-xs">Đơn hàng</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a routerLink="/edit" class="nav-link"><i class="icon-note"></i> <span class="hidden-xs">Thay đổi thông tin</span></a>
+                    </li>
+                </ul>
+                <div class="tab-pane" >
+                    <form [formGroup]="editForm">
+                    <div class="row">
+                          <!-- name input -->
+                          <div class="col-md-6 mb-4">
+                            <input formControlName="name" type="text"  class="form-control form-control-lg"
+                              placeholder="Name" />
+                            <div *ngIf="editForm.controls['name']?.errors && editForm.controls['name'].dirty" class="text-danger">
+                              <div *ngIf="editForm.controls['name']?.errors?.required">name is required</div>
+                            </div>
+                          </div>
+                    
+                          <!-- phone input -->
+                          <div class="col-md-6 mb-4">
+                            <input formControlName="phone" type="number"  class="form-control form-control-lg"
+                              placeholder="Phone" />
+                            <div *ngIf="editForm.controls['phone']?.errors && editForm.controls['phone'].dirty" class="text-danger">
+                              <div *ngIf="editForm.controls['phone']?.errors?.required">Phone Number is required</div>
+                            </div>
+                          </div>
+                    
+                          <!-- account input -->
+                          <div class="col-md-6 mb-4">
+                            <input formControlName="account" type="text"  class="form-control form-control-lg"
+                              placeholder="Account" />
+                            <div *ngIf="editForm.controls['account']?.errors && editForm.controls['account'].dirty" class="text-danger">
+                              <div *ngIf="editForm.controls['account']?.errors?.required">Account is required</div>
+                            </div>
+                          </div>
+                    
+                          <!-- email input -->
+                          <div class="col-md-6 mb-4">
+                            <input formControlName="email" type="email" class="form-control form-control-lg"
+                                placeholder="Email" [readonly]="true" />
+                            <!-- [readonly] sẽ làm cho trường nhập liệu trở thành chỉ đọc -->
+                            <div *ngIf="editForm.controls['email']?.errors && editForm.controls['email'].dirty" class="text-danger">
+                                <div *ngIf="editForm.controls['email']?.errors?.required">Email is required</div>
+                            </div>
+                        </div>
+                        
+
+                          <div class="col-md-6 mb-4">
+                            <input formControlName="password" type="password"  class="form-control form-control-lg"
+                              placeholder="password" />
+                            <div *ngIf="editForm.controls['password']?.errors && editForm.controls['password'].dirty" class="text-danger">
+                              <div *ngIf="editForm.controls['password']?.errors?.required">password is required</div>
+                            </div>
+                          </div>
+                        </div>
+                        
+                        <div class="col-md-4 mb-4">
+                            <input formControlName="checkcode" type="text" class="form-control form-control-lg"
+                              placeholder="checkcode" />
+                            <div *ngIf="editForm.controls['checkcode']?.errors && editForm.controls['checkcode'].dirty" class="text-danger">
+                              <div *ngIf="editForm.controls['checkcode']?.errors?.required">checkcode is required</div>
+                            </div>
+                        </div>
+                    </form>
+                          <button
+                        [style]="{
+                          'min-width': '80px'
+                        }"
+                        (click)="sendEmail()"
+                        type="button"
+                        class="btn btn-primary m-lg-2"> Gửi code xác nhận 
+                        </button>
+                        <mat-dialog-actions class="d-flex justify-content-end">
+                            <div class="text-center">
+                                <button
+                                [style]="{
+                                    'min-width': '80px'
+                                }"
+                            (click)="checkVerificationCode()"
+                            [disabled]="editForm.invalid"
+                            type="button"
+                            class="btn btn-primary m-lg-2"> Xác nhận 
+                        </button>
+                    </div>
+                </mat-dialog-actions>
+            </div>
+            </div>
+          </div>
+          </div>
+        </div>
+    </div>
+   
+<app-footer></app-footer>

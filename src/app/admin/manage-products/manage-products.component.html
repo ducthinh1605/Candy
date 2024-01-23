@@ -1,0 +1,81 @@
+<form action="" class="form-inline" method="post" role="form">
+  <button type="submit" (click)="add()" class="btn btn-primary">Add new</button>
+  <mat-form-field>
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+  </mat-form-field>
+</form>
+
+<hr>
+
+<div class="mat-elevation-z8" id="father">
+  <table class="table ">
+    <thead class="head">
+      <tr>
+        <th>No.</th>
+        <th style="width: 300px;">Name</th>
+        <th>package</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Image</th>
+        <th style="width: 400px;">Description</th>
+        <th>Expried</th>
+        <th>Created_at</th>
+        <th>Updated_at</th>
+        <th>Category</th>
+        <th>Supplier</th>
+        <button (click)="onSortButtonClick()" class="fa fa-sort"></button>
+        <button (click)="onExpiredButtonClick()" class="fa fa-clock-o"></button>
+      </tr>
+    </thead>
+      <tbody>
+        <tr *ngFor="let item of products | paginate: { itemsPerPage: 5, currentPage: currentPage }; let i = index">
+          <td scope="row">{{ (currentPage - 1) * 5 + i + 1 }}</td>
+          <td>{{item?.name}}</td>
+          <td>{{item.pakage}}</td>
+          <td>{{item.price}}</td>
+          <td>{{item.qty}}</td>
+          <details>
+            <summary> 
+              <td>
+              <img (click)="viewImage(item?.img)" style="width: 50px; height: 50px; border-radius: 9rem;" src="{{ item?.img }}">
+            </td></summary>
+            <table>
+              <tr>
+               
+                <td>
+                  <div *ngFor="let img of item?.productImages">
+                    <img (click)="viewImage(img?.img)" style="width: 50px; height: 50px; border-radius: 9rem;" src="{{ img?.img }}">
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </details>
+          <td>{{formatDescription(item?.description)}}</td>
+          <td [class.near-expiry]="isDateNearExpired(item.expired)">
+            {{ formatDate(item.expired) }}
+          </td>
+          <!-- Thêm class có màu cho sản phẩm đã hết date -->
+          <td [class.expired]="isDateExpired(item.expired)">
+            {{ formatDate(item.expired) }}
+          </td>
+          <td>{{ formatDate(item.created_at) }}</td>
+          <td>{{ formatDate(item.updated_at) }}</td>
+          <td>{{getCategoryName(item?.category?.id) | titlecase}}</td>
+          <td>{{getSupplierName(item?.sup?.id) | titlecase}}</td>
+          <td class="button-container">
+            <button (click)="update(item)" class="btn btn-primary btn-sm mr-1">Update</button>
+            <button class="btn btn-danger btn-sm" (click)="deleteProduct(item)">Delete</button>
+          </td>
+          
+          
+          
+        </tr>
+      </tbody>
+  </table>
+  <div class="pagination">
+    <pagination-controls (pageChange)="currentPage = $event"></pagination-controls>
+    <span style="margin-left: 6px; margin-top: 4px;"> {{ products?.length }} Items </span>
+  </div>
+</div>
+

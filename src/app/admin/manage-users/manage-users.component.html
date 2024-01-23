@@ -1,0 +1,48 @@
+<form action="" class="form-inline" method="post" role="form">
+  <button type="submit" (click)="addUser()" class="btn btn-primary">Add new</button>
+</form>
+
+<hr>
+
+<div class="mat-elevation-z8" id="father">
+  <table class="table ">
+    <thead class="head">
+      <tr>
+        <th>No.</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Account</th>
+        <th>Password</th>
+        <th>Phone</th>
+        <th>Created at</th>
+        <th>Updated at</th>
+        <button class="fa fa-sort" (click)="onSortNewestButtonClick()"></button>
+        <button class="fa fa-sort-alpha-asc" (click)="onSortNameButtonClick()"></button>
+      </tr>
+    </thead>
+      <tbody>
+        <tr *ngFor="let item of dataUser | paginate: { itemsPerPage: 5, currentPage: currentPage }; let i = index">
+          <td scope="row">{{ (currentPage - 1) * 5 + i + 1 }}</td>
+          <!-- <td>
+            <img (click)="viewImage(item?.userAvt)" style="width: 50px; height: 50px; border-radius: 9rem;" src="{{ item?.userAvt }}">
+          </td> -->
+          <td>{{item?.name}}</td>
+          <td>{{item?.email}}</td>
+          <td>{{item?.account}}</td>
+          <td>{{item?.password}}</td>
+          <td>{{item?.phone}}</td>
+          <td>{{ formatDate(item.created_at) }}</td>
+          <td>{{ formatDate(item.updated_at) }}</td>
+          <td>
+            <button class="btn btn-primary mr-1" (click)="updateUser(item)" >Update</button>
+            <button class="btn btn-danger mr-1" (click)="deleteUser(item)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+  </table>
+  <div class="pagination">
+    <pagination-controls (pageChange)="currentPage = $event"></pagination-controls>
+    <span style="margin-left: 6px; margin-top: 4px;"> {{ dataUser?.length}} Items </span>
+  </div>
+</div>
+

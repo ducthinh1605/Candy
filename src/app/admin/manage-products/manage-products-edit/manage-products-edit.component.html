@@ -1,0 +1,136 @@
+<h2 mat-dialog-title>Edit Products</h2>
+<hr>
+<mat-dialog-content>
+  <form [formGroup]="editForm">
+    <div class="form-outline mb-4">
+      <input formControlName="name" type="text" id="form3Example3" class="form-control form-control-lg"
+        placeholder="Name" />
+
+        <div *ngIf="editForm.controls['name']?.errors && editForm.controls['name'].dirty" class="text-danger">
+          <div *ngIf="editForm.controls['name']?.errors?.required">Name is required</div>
+        </div>
+    </div>
+
+    <div class="form-outline mb-4">
+      <input formControlName="pakage" type="text" id="form3Example3" class="form-control form-control-lg"
+        placeholder="Package" />
+
+      <div *ngIf="editForm.controls['pakage']?.errors && editForm.controls['pakage'].dirty" class="text-danger">
+        <div *ngIf="editForm.controls['pakage']?.errors?.required">Package is required</div>
+      </div>
+    </div>
+
+    <div class="form-outline mb-4">
+      <input [min]="0" formControlName="price" type="number" id="form3Example3" class="form-control form-control-lg"
+        placeholder="Price" />
+
+      <div *ngIf="editForm.controls['price'].errors && editForm.controls['price'].dirty" class="text-danger">
+        <div *ngIf="editForm.controls['price'].errors.required"> Price is required</div>
+      </div>
+    </div>
+
+    <div class="form-outline mb-4">
+      <input formControlName="qty" type="number" id="form3Example3" class="form-control form-control-lg"
+        placeholder="Quantity" />
+
+      <div *ngIf="editForm.controls['qty'].errors && editForm.controls['qty'].dirty" class="text-danger">
+        <div *ngIf="editForm.controls['qty'].errors.required"> Quantity is required</div>
+      </div>
+    </div>
+
+    <!-- Thêm sau phần nhập liệu hình ảnh chính -->
+<label for="mainImage">Main Image</label>
+<div class="mb-4">
+  <ngx-uploadcare-widget
+    public-key="99e830eafb2115021a43"
+    (on-upload-complete)="onUploadComplete($event)">
+  </ngx-uploadcare-widget>
+</div>
+<img *ngIf="uploadedImageUrl" [src]="uploadedImageUrl" alt="Main Image" class="uploaded-image" />
+
+<!-- Thêm sau phần nhập liệu hình ảnh phụ -->
+<label for="subImages">Additional Images</label>
+<div class="mb-4 custom-widget-container">
+  <div class="custom-widget">
+    <ngx-uploadcare-widget
+      public-key="99e830eafb2115021a43"
+      (on-upload-complete)="onSubImageUploadComplete($event)">
+    </ngx-uploadcare-widget>
+  </div>
+</div>
+<div class="mb-4 custom-widget-container">
+  <div class="custom-widget">
+    <ngx-uploadcare-widget
+      public-key="99e830eafb2115021a43"
+      (on-upload-complete)="onSubImageUploadComplete($event)">
+    </ngx-uploadcare-widget>
+  </div>
+</div>
+<div class="mb-4 custom-widget-container">
+  <div class="custom-widget">
+    <ngx-uploadcare-widget
+      public-key="99e830eafb2115021a43"
+      (on-upload-complete)="onSubImageUploadComplete($event)">
+    </ngx-uploadcare-widget>
+  </div>
+</div>
+    <div class="form-outline mb-4">
+      <input formControlName="description" type="text" id="form3Example3" class="form-control form-control-lg"
+        placeholder="description" />
+
+      <div *ngIf="editForm.controls['description'].errors && editForm.controls['description'].dirty" class="text-danger">
+        <div *ngIf="editForm.controls['description'].errors.required"> Image Url is required</div>
+      </div>
+    </div>
+
+    <div class="form-outline mb-4">
+      <input formControlName="expied" type="date" id="form3Example3" class="form-control form-control-lg" />
+      
+      <div *ngIf="editForm.controls['expied'].dirty && !editForm.controls['expied'].valid" class="text-danger">
+        <div *ngIf="editForm.controls['expied'].errors?.required">expied is required</div>
+        <div *ngIf="editForm.controls['expied'].errors?.invalidDate">expied must be a future date</div>
+      </div>
+    </div>
+
+    <div class="form-outline mb-4">
+      <select formControlName="category" class="form-control">
+        <option value="">-- Select Category --</option>
+        <option *ngFor="let category of categories" [value]="category?.id">{{ category?.name | titlecase }}</option>
+      </select>
+      <div *ngIf="editForm.controls['category'].errors && editForm.controls['category'].dirty" class="text-danger">
+        <div *ngIf="editForm.controls['category'].errors.required"> Category is required</div>
+      </div>
+      <br>
+      <div class="form-outline mb-4">
+        <select formControlName="supplier" class="form-control">
+          <option value="">-- Select supplier --</option>
+          <option *ngFor="let supplier of suppliers" [value]="supplier?.id">{{ supplier?.name | titlecase }}</option>
+        </select>
+        <div *ngIf="editForm.controls['supplier'].errors && editForm.controls['supplier'].dirty" class="text-danger">
+          <div *ngIf="editForm.controls['supplier'].errors.required"> Supplier is required</div>
+        </div>
+    </div>
+    </div>
+  </form>
+</mat-dialog-content>
+<hr>
+<mat-dialog-actions class="d-flex justify-content-end">
+  <div class="text-center">
+    <button
+      [style]="{
+        'min-width': '80px'
+      }"
+      (click)="onNoClick()"
+      type="button"
+      class="btn btn-danger"> Cancel </button>
+
+    <button
+      [style]="{
+        'min-width': '80px'
+      }"
+      (click)="edit()"
+      [disabled]="editForm.invalid"
+      type="button"
+      class="btn btn-primary m-lg-2"> Submit </button>
+  </div>
+</mat-dialog-actions>

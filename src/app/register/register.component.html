@@ -1,0 +1,85 @@
+<app-header></app-header>
+<div class="background">
+  <div class="main__container h-100 w-100 d-flex justify-content-center align-items-center">
+    <div class="login-card">
+      <main class="login-content">
+        <form [formGroup]="registerForm" class="register-form">
+          <br>
+          <h1> Sign up </h1>
+          <table class="example-full-width" cellspacing="0">
+            <tr>
+              <td>
+                <mat-form-field class="example-full-width">
+                  <mat-label>Name</mat-label>
+                  <input formControlName="name" matInput placeholder="Ex. Thinh">
+                </mat-form-field>
+              </td>
+
+              <td>
+                <mat-form-field class="example-full-width">
+                  <mat-label>Email</mat-label>
+                  <input formControlName="email" matInput placeholder="Ex. Le Ha Duc">
+                  <mat-error *ngIf="registerForm.get('email').hasError('email') && !registerForm.get('email').hasError('required')">
+                    Invalid email format
+                  </mat-error>
+                </mat-form-field>
+              </td>
+
+              <td>
+                <mat-form-field class="example-full-width">
+                  <mat-label>Account</mat-label>
+                  <input formControlName="account" matInput>
+                  <mat-error *ngIf="registerForm.get('account').hasError('required')">Account is required</mat-error>
+                </mat-form-field>
+              </td>
+            </tr>
+          </table>
+
+          <table class="example-full-width" cellspacing="0">
+            <tr>
+              <td>
+                <mat-form-field class="example-full-width">
+                  <mat-label>Password</mat-label>
+                  <input formControlName="password" matInput type="password">
+                  <mat-error *ngIf="registerForm.get('password').hasError('minlength')">
+                    Mật khẩu tối thiểu 8 ký tự
+                  </mat-error>
+                  <mat-error *ngIf="registerForm.get('password').hasError('pattern')">
+                    Mật khẩu phải bao gồm ít nhất 1 ký tự in hoa
+                  </mat-error>
+                </mat-form-field>
+              </td>
+
+              <td>
+                <mat-form-field class="example-full-width">
+                  <mat-label>Confirm password</mat-label>
+                  <input formControlName="confirmPassword" matInput type="password">
+                  <mat-error *ngIf="registerForm.hasError('matchPassword')">
+                    Passwords do not match
+                  </mat-error>
+                </mat-form-field>
+              </td>
+
+              <td>
+                <mat-form-field class="example-full-width">
+                  <mat-label>Phone number</mat-label>
+                  <input formControlName="phone" matInput #postalCode maxlength="10" placeholder="Ex. 085xxxxxxx" value="">
+                  <mat-hint align="end">{{postalCode.value.length}} / 10</mat-hint>
+                  <mat-error *ngIf="registerForm.get('phone').hasError('pattern')">Invalid phone number</mat-error>
+                </mat-form-field>
+              </td>
+            </tr>
+          </table>
+          <div class="example-button-row">
+            <button [disabled]="registerForm.invalid" (click)="sendVerificationEmail()" mat-fab extended color="primary">
+              <mat-icon>how_to_reg</mat-icon>
+              Xác nhận
+            </button>
+            <h3><a href="">forgot password?</a></h3>
+          </div>
+        </form>
+      </main>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

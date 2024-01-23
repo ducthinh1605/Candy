@@ -1,0 +1,16 @@
+/* CSS cho các nút */
+.button-container button {
+    margin-right: 5px; /* Khoảng cách giữa các nút */
+  }
+  
+  
+td.near-expiry {
+  color: rgb(197, 197, 10);
+}
+
+/* Thêm màu đỏ cho sản phẩm đã hết date */
+td.expired {
+  color: red;
+}
+
+  

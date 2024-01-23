@@ -1,0 +1,42 @@
+<h2 mat-dialog-title>Add new user</h2>
+<hr>
+<mat-dialog-content>
+  <form [formGroup]="addNewForm">
+    <div class="row">
+  
+      <div class="col-md-6 mb-4">
+        <input formControlName="title" type="text" class="form-control" placeholder="title" />
+        <div *ngIf="addNewForm.controls['title']?.errors && addNewForm.controls['title'].dirty" class="text-danger">
+          <div *ngIf="addNewForm.controls['title']?.errors?.required">Tittle is required</div>
+        </div>
+      </div>
+
+      <div class="col-md-6 mb-4">
+        <!-- <input formControlName="img" type="text" class="form-control" placeholder="IMG URL" />
+        <div *ngIf="addNewForm.controls['img']?.errors && addNewForm.controls['img'].dirty" class="text-danger">
+          <div *ngIf="addNewForm.controls['img']?.errors?.required">IMG URL is required</div>
+        </div> -->
+        <div class="mb-4">
+          <ngx-uploadcare-widget
+            public-key="99e830eafb2115021a43"
+            (on-upload-complete)="onUploadComplete($event)">
+          </ngx-uploadcare-widget>
+        </div>
+      </div>
+
+      <div class="col-md-6 mb-4">
+        <input formControlName="content" type="text" class="form-control" placeholder="content" />
+        <div *ngIf="addNewForm.controls['content']?.errors && addNewForm.controls['content'].dirty" class="text-danger">
+          <div *ngIf="addNewForm.controls['content']?.errors?.required">Website is required</div>
+        </div>
+      </div>
+    </div>
+  </form>
+</mat-dialog-content>
+<hr>
+<mat-dialog-actions class="d-flex justify-content-end">
+  <div class="text-center">
+    <button (click)="onNoClick()" type="button" class="btn btn-danger"> Cancel </button>
+    <button (click)="add()" [disabled]="addNewForm.invalid" type="button" class="btn btn-primary m-lg-2"> Submit </button>
+  </div>
+</mat-dialog-actions>

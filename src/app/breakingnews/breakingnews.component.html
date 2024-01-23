@@ -1,0 +1,23 @@
+
+<!-- <div *ngFor="let language of processedLanguages">
+    {{ language.code }} - {{ language.name }}
+  </div> -->
+  <!-- app.component.html -->
+
+<table>
+    <thead>
+      <tr>
+        <th>Code</th>
+        <th>Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let language of processedLanguages">
+        <td>{{ language.code }}</td>
+        <td>{{ language.name }}</td>
+      </tr>
+    </tbody>
+  </table>
+  
+
+  

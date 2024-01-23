@@ -1,0 +1,85 @@
+/* CSS */
+/* Style cho nút Category và Supplier */
+.btn-link {
+  font-weight: bold;
+  color: #333; /* Màu chữ mặc định */
+}
+
+.btn-link.active,
+.btn-link:hover {
+  color: #f00; /* Màu chữ khi được chọn hoặc hover */
+}
+
+/* Style cho nội dung Category và Supplier */
+.nav-link {
+  color: #000000; /* Màu chữ mặc định */
+}
+
+.nav-link.active,
+.nav-link:hover {
+  color: #00f; /* Màu chữ khi được chọn hoặc hover */
+}
+/* CSS */
+/* Thiết lập danh sách nhà cung cấp */
+.supplier-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Thiết lập kiểu dáng cho mỗi nhà cung cấp */
+.supplier-wrapper {
+  margin-top: 20px; /* Add space between the content and the supplier images */
+  display: flex; /* Sử dụng flexbox để căn giữa */
+  justify-content: center; /* Canh giữa theo chiều ngang */
+}
+
+.supplier-scroll {
+  overflow-x: auto;
+  white-space: nowrap;
+  max-height: 150px; /* Adjust the maximum height of the scrollable area */
+  overflow-y: hidden; /* Hide vertical scrollbar if it appears */
+  display: flex; /* Sử dụng flexbox để căn giữa */
+  align-items: center; /* Canh giữa theo chiều dọc */
+}
+
+.supplier-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex; /* Set the list as a flex container */
+}
+
+.supplier-item {
+  flex: 0 0 auto;
+  margin-right: 10px;
+}
+
+.supplier-image {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+}
+/* CSS */
+.supplier-item {
+  transition: transform 0.3s ease-in-out;
+}
+
+.supplier-item:hover {
+  transform: scale(1.1); /* hoặc bất kỳ hiệu ứng nào bạn muốn áp dụng */
+}
+/* Chỉnh màu nền của phần có class là "bg-primary" thành #808080 */
+.bg-primary {
+  background-color: #CD5C5C !important; /* Sử dụng !important để ưu tiên cao hơn */
+  /* Các thiết lập khác nếu cần thiết */
+}
+/* Chỉnh màu nền và màu chữ cho nút "View more" */
+.btn-warning {
+  background-color: #000000; /* Màu đen */
+  color: #ffffff; /* Màu trắng cho chữ */
+}
+
+
+
+
+

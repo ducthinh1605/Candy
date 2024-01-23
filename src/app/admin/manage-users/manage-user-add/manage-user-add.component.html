@@ -1,0 +1,75 @@
+<h2 mat-dialog-title>Add new user</h2>
+<hr>
+<mat-dialog-content>
+  <form [formGroup]="registerForm">
+    <div class="row">
+      <!-- name input -->
+      <div class="col-md-6 mb-4">
+        <input formControlName="name" type="text" id="formName" class="form-control form-control-lg"
+          placeholder="Name" />
+        <div *ngIf="registerForm.controls['name']?.errors && registerForm.controls['name'].dirty" class="text-danger">
+          <div *ngIf="registerForm.controls['name']?.errors?.required">Name is required</div>
+        </div>
+      </div>
+      <!-- Phone input -->
+      <div class="col-md-6 mb-4">
+        <input formControlName="phone" type="text" id="formPhone" class="form-control form-control-lg"
+          placeholder="Phone number" />
+        <div *ngIf="registerForm.controls['phone']?.errors && registerForm.controls['phone'].dirty" class="text-danger">
+          <div *ngIf="registerForm.controls['phone']?.errors?.required">Phone number is required</div>
+          <div *ngIf="registerForm.controls['phone']?.errors?.pattern">Invalid phone number format</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <!-- Email input -->
+      <div class="col-md-6 mb-4">
+        <input formControlName="email" type="email" id="formEmail" class="form-control form-control-lg"
+          placeholder="Email" />
+        <div *ngIf="registerForm.controls['email'].errors && registerForm.controls['email'].dirty" class="text-danger">
+          <div *ngIf="registerForm.controls['email'].errors.required">Email is required</div>
+          <div *ngIf="registerForm.controls['email'].errors.email">Invalid email format</div>
+        </div>
+      </div>
+      <!-- account input -->
+      <div class="col-md-6 mb-4">
+        <input formControlName="account" type="text" id="formAccount" class="form-control form-control-lg"
+          placeholder="Account" />
+        <div *ngIf="registerForm.controls['account']?.errors && registerForm.controls['account'].dirty" class="text-danger">
+          <div *ngIf="registerForm.controls['account']?.errors?.required">Account is required</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Password input -->
+    <div class="mb-4">
+      <input formControlName="password" type="password" id="formPassword" class="form-control form-control-lg"
+        placeholder="Enter Your password" />
+      <div *ngIf="registerForm.controls['password']?.errors && registerForm.controls['password'].dirty" class="text-danger">
+        <div *ngIf="registerForm.controls['password']?.errors?.required">Password is required</div>
+      </div>
+    </div>
+  </form>
+</mat-dialog-content>
+<hr>
+<mat-dialog-actions class="d-flex justify-content-end">
+  <div class="text-center">
+    <button
+      [style]="{
+        'min-width': '80px'
+      }"
+      (click)="onNoClick()"
+      type="button"
+      class="btn btn-danger"> Cancel </button>
+
+    <button
+      [style]="{
+        'min-width': '80px'
+      }"
+      (click)="register()"
+      [disabled]="registerForm.invalid"
+      type="button"
+      class="btn btn-primary m-lg-2"> Submit </button>
+  </div>
+</mat-dialog-actions>

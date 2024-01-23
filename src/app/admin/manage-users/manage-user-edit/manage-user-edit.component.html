@@ -1,0 +1,64 @@
+<h2 mat-dialog-title>Edit Users</h2>
+<hr>
+<mat-dialog-content>
+  <form [formGroup]="editForm">
+    <div class="row">
+      <!-- name input -->
+      <div class="col-md-6 mb-4">
+        <input formControlName="name" type="text" id="formName" class="form-control form-control-lg"
+          placeholder="Name" />
+        <div *ngIf="editForm.controls['name']?.errors && editForm.controls['name'].dirty" class="text-danger">
+          <div *ngIf="editForm.controls['name']?.errors?.required">Name is required</div>
+        </div>
+      </div>
+
+      <!-- phone input -->
+      <div class="col-md-6 mb-4">
+        <input formControlName="phone" type="text" id="formPhone" class="form-control form-control-lg"
+          placeholder="Phone" />
+        <div *ngIf="editForm.controls['phone']?.errors && editForm.controls['phone'].dirty" class="text-danger">
+          <div *ngIf="editForm.controls['phone']?.errors?.required">Phone Number is required</div>
+        </div>
+      </div>
+
+      <!-- account input -->
+      <div class="col-md-6 mb-4">
+        <input formControlName="account" type="text" id="formAccount" class="form-control form-control-lg"
+          placeholder="Account" />
+        <div *ngIf="editForm.controls['account']?.errors && editForm.controls['account'].dirty" class="text-danger">
+          <div *ngIf="editForm.controls['account']?.errors?.required">Account is required</div>
+        </div>
+      </div>
+
+      <!-- email input -->
+      <div class="col-md-6 mb-4">
+        <input formControlName="email" type="email" id="formEmail" class="form-control form-control-lg"
+          placeholder="Email" />
+        <div *ngIf="editForm.controls['email']?.errors && editForm.controls['email'].dirty" class="text-danger">
+          <div *ngIf="editForm.controls['email']?.errors?.required">Email is required</div>
+        </div>
+      </div>
+    </div>
+  </form>
+</mat-dialog-content>
+<hr>
+<mat-dialog-actions class="d-flex justify-content-end">
+  <div class="text-center">
+    <button
+      [style]="{
+        'min-width': '80px'
+      }"
+      (click)="onNoClick()"
+      type="button"
+      class="btn btn-danger"> Cancel </button>
+
+    <button
+      [style]="{
+        'min-width': '80px'
+      }"
+      (click)="onEdit()"
+      [disabled]="editForm.invalid"
+      type="button"
+      class="btn btn-primary m-lg-2"> Submit </button>
+  </div>
+</mat-dialog-actions>
